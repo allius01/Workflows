@@ -1,0 +1,28 @@
+# Continuous integration for java repo
+
+---
+name: Continuous integration for java repo
+on: push
+jobs:
+  buildjob:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+        with:
+          repository: allius01/https://github.com/allius01/MavenBuild-SL.git
+          ref: master
+      - name: Install java and maven
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25' 
+      - name: Compile the code
+        run: mvn compile
+      - name: Test yhe code
+        run: mvn test
+      - name: Build the code
+        run: mvn package
+
+
+  
