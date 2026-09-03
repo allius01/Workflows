@@ -1,0 +1,12 @@
+# Install Python using actions instead of using multiple apt commands.
+---
+name: Install Python using actions
+on: workflow_dispatch
+jobs:
+  job1:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install Python 3.13
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
