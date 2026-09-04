@@ -1,28 +1,28 @@
 # Workflow to Build the nodejs code and take the backup in github
 ---
-name:  Build the nodejs code
+name: Download Artifact
 on: push
 jobs:
-    Build-job:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout the code
-            uses: actions/checkout@v7
-            with:
-                repository: Sonal0409/GithubActions-NodeJs-Demo
-                ref: master 
-          - name: Install Nodejs
-            uses: actions/setup-node@v7
-            with:
-                node-version: '18'
-          - name: Install dependencies
-            run: npm ci
-          - name: Execute the test cases
-            run: npm test
-          - name: Build the application
-            run: npm run build
-          - name: Upload-build from runner
-            uses: actions/upload-artifact@v7
-            with:
-                name: Build-file
-                path: dist
+  Build-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v7
+        with:
+          repository: Sonal0409/GithubActions-NodeJs-Demo
+          ref: master
+      - name: Install Nodejs
+        uses: actions/setup-node@v7
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: npm ci
+      - name: Execute the test cases
+        run: npm test
+      - name: Build the application
+        run: npm run build
+      - name: Upload-build from runner
+        uses: actions/upload-artifact@v7
+        with:
+          name: Build-file
+          path: dist
