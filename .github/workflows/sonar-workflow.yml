@@ -20,13 +20,8 @@ jobs:
           java-version: "21"
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2
-        with:
-          args: >
-            -mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:5.2.0.4988
-            -Dsonar.projectKey=org-lmt_CI-with-githubActions
-            -Dsonar.organization=org-lmt
-            -Dsonar.host.url=https://sonarcloud.io
+        run: 
+            -mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:5.2.0.4988-Dsonar.projectKey=org-lmt_CI-with-githubActions-Dsonar.organization=org-lmt-Dsonar.host.url=https://sonarcloud.io-Dsonar.token=$SONAR_TOKEN
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
